@@ -7,7 +7,7 @@ import (
 
 type ExampleController struct{}
 
-func (c *ExampleController) Get() mvc.Result {
+func (c *ExampleController) GetApi() mvc.Result {
 	/*	return mvc.Response{
 		ContentType: "text/html",
 		Text:        "<h1>Welcome</h1>",
@@ -15,13 +15,6 @@ func (c *ExampleController) Get() mvc.Result {
 	return mvc.View{
 		Name: "index.html",
 	}
-}
-func (c *ExampleController) GetPing() string {
-	return "pong"
-}
-
-func (c *ExampleController) GetHello() interface{} {
-	return map[string]string{"message": "Hello Iris!"}
 }
 
 func (c *ExampleController) BeforeActivation(b mvc.BeforeActivation) {
