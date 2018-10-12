@@ -2,12 +2,12 @@ package main
 
 import (
 	"IrisProject/global"
+	"IrisProject/models"
 	"IrisProject/routes"
 	"github.com/kataras/iris"
 	"github.com/kataras/iris/middleware/logger"
 	"github.com/kataras/iris/middleware/recover"
 )
-
 
 func newApp() *iris.Application {
 	app := iris.New()
@@ -24,6 +24,7 @@ func newApp() *iris.Application {
 func main() {
 	global.InitDB()
 	app := newApp()
+	global.DB.Create(&models.Searchinfo{Type:1,Value:"公司",TypeId:2})
 	app.Run(iris.Addr(":8080"))
 	defer global.DB.Close()
 }
