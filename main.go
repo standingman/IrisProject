@@ -2,7 +2,6 @@ package main
 
 import (
 	"IrisProject/global"
-	"IrisProject/models"
 	"IrisProject/routes"
 	"github.com/kataras/iris"
 	"github.com/kataras/iris/middleware/logger"
@@ -14,7 +13,7 @@ func newApp() *iris.Application {
 	app.Use(recover.New())
 	app.Use(logger.New())
 	tmpl := iris.HTML("./view/", ".html")
-	app.StaticWeb("/public", "./view/public/")
+	app.StaticWeb("/view", "./view/static/")
 	app.RegisterView(tmpl)
 	app.Configure(routes.Configure)
 	return app
@@ -24,9 +23,9 @@ func newApp() *iris.Application {
 func main() {
 	global.InitDB()
 	app := newApp()
-	global.DB.Create(&models.Searchinfo{Type:1,Value:"公司",TypeId:2})
+	//global.DB.Create(&models.Searchinfo{Type:1,Value:"公司",TypeId:2})
 	app.Run(iris.Addr(":8080"))
-	defer global.DB.Close()
+	//defer global.DB.Close()
 }
 
 
